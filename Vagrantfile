@@ -11,7 +11,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "hfm4/centos6"
-
+  config.vm.network "forwarded_port", guest: 3000, host: 3000
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
+  end
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, "--cpus",  4]
+    vb.customize ["modifyvm", :id, "--hpet", "on"]   # おまじない設定。何これ? と思ったら下を読んでください
+    vb.customize ["modifyvm", :id, "--acpi", "off"]  # http://d.hatena.ne.jp/hiboma/20140330/1396184773
+  end
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
