@@ -12,7 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "hfm4/centos6"
   config.vm.network "forwarded_port", guest: 3000, host: 3000
-  config.vm.provision :shell, path: "shell/build-rails.sh"
+  config.vm.provision :shell, path: "shell/build-rails.sh", privileged: false
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
