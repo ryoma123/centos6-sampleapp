@@ -31,7 +31,7 @@ eval "$(rbenv init -)"
 EOS
 
 # mysql の起動・OS 起動時に自動的に起動する
-/etc/rc.d/init.d/mysqld start
+service mysqld start
 chkconfig mysqld on
 
 # mysql のDB を作成する
