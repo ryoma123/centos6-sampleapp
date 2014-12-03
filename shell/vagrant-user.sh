@@ -4,7 +4,7 @@ set -x
 set -e
 set -u
 
-PATH=/bin:/sbin:/usr/bin:/usr/sbin
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/home/vagrant/.rbenv/shims
 
 # ruby-build を clone する
 if [ -d /home/vagrant/.rbenv/plugins/ruby-build ]; then

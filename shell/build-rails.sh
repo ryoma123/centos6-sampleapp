@@ -4,7 +4,7 @@ set -x
 set -e
 set -u
 
-PATH=/bin:/sbin:/usr/bin:/usr/sbin
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/home/vagrant/.rbenv/shims
 
 # package のインストール
 yum -y install httpd git yum gcc gcc-c++ openssl openssl-devel readline readline-devel libxslt libxslt-devel libxml2 libxml2-devel sqlite-devel mysql mysql-devel mysql-server patch
