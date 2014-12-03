@@ -2,9 +2,12 @@
 
 set -x
 set -e
-set -u
 
-PATH=/bin:/sbin:/usr/bin:/usr/sbin:/home/vagrant/.rbenv/shims
+PATH=/bin:/sbin:/usr/bin:/usr/sbin
+source /home/vagrant/.bash_profile
+
+# set -u を設定した後に .bash_profile を source すると、問題ない箇所の変数未定義により provisioning が中断されてしまうため以下に追加しています
+set -u
 
 # ruby-build を clone する
 if [ -d /home/vagrant/.rbenv/plugins/ruby-build ]; then

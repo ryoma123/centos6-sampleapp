@@ -4,7 +4,7 @@ set -x
 set -e
 set -u
 
-PATH=/bin:/sbin:/usr/bin:/usr/sbin:/home/vagrant/.rbenv/shims
+PATH=/bin:/sbin:/usr/bin:/usr/sbin
 
 # package のインストール
 yum -y install httpd git yum gcc gcc-c++ openssl openssl-devel readline readline-devel libxslt libxslt-devel libxml2 libxml2-devel sqlite-devel mysql mysql-devel mysql-server patch
@@ -29,9 +29,6 @@ export PATH=$PATH:/sbin:/usr/sbin:$HOME/bin
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 EOS
-
-set +u
-source /home/vagrant/.bash_profile
 
 # mysql の起動・OS 起動時に自動的に起動する
 /etc/rc.d/init.d/mysqld start
