@@ -5,7 +5,7 @@ set -e
 set -u
 
 # ruby-build を clone する
-if [ -e /home/vagrant/.rbenv/plugins/ruby-build ]; then
+if [ -d /home/vagrant/.rbenv/plugins/ruby-build ]; then
     :
     : ruby-build already installed
 else
@@ -13,7 +13,7 @@ else
 fi
 
 # ruby 2.1.5 のインストール
-if [ -e /home/vagrant/.rbenv/versions/2.1.5 ]; then
+if [ -d /home/vagrant/.rbenv/versions/2.1.5 ]; then
     :
     : ruby 2.1.5 already installed
 else
@@ -23,7 +23,7 @@ else
 fi
 
 # rails アプリを clone する
-if [ -e /home/vagrant/sample_app2 ]; then
+if [ -d /home/vagrant/sample_app2 ]; then
     :
     : sample_app2 already installed
 else
@@ -31,7 +31,7 @@ else
 fi
 
 # bundler のインストール
-if [ -e /home/vagrant/.rbenv/shims/bundler ]; then
+if [ -f /home/vagrant/.rbenv/shims/bundler ]; then
     :
     : bundler already installed
 else
@@ -41,7 +41,7 @@ fi
 # bundler の実行
 cd /home/vagrant/sample_app2
 
-if [ -e /home/vagrant/sample_app2/vendor/bundle ]; then
+if [ -d /home/vagrant/sample_app2/vendor/bundle ]; then
     :
     : gem already installed
 else

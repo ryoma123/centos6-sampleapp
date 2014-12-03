@@ -15,7 +15,7 @@ gem: --no-ri --no-rdoc
 EOS
 
 # rbenv を clone する
-if [ -e /home/vagrant/.rbenv ]; then
+if [ -d /home/vagrant/.rbenv ]; then
     :
     : rbenv already installed
 else
@@ -38,7 +38,7 @@ source /home/vagrant/.bash_profile
 chkconfig mysqld on
 
 # mysql のDB を作成する
-if [ -e /var/lib/mysql/sampleapp2 ]; then
+if [ -d /var/lib/mysql/sampleapp2 ]; then
     :
     : database already created
 else
