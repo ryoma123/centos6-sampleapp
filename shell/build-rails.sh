@@ -7,7 +7,28 @@ set -u
 PATH=/bin:/sbin:/usr/bin:/usr/sbin
 
 # package のインストール
-yum -y install httpd git yum gcc gcc-c++ openssl openssl-devel readline readline-devel libxslt libxslt-devel libxml2 libxml2-devel sqlite-devel mysql mysql-devel mysql-server patch
+packages=(
+    httpd
+    git
+    yum
+    patch
+    gcc
+    gcc-c++
+    openssl
+    openssl-devel
+    readline
+    readline-devel
+    libxslt
+    libxslt-devel
+    libxml2
+    libxml2-devel
+    sqlite-devel
+    mysql
+    mysql-devel
+    mysql-server
+)
+
+yum -y install "${packages[@]}"
 
 # gem インストール時にドキュメントを保存しない
 cat <<'EOS' > /home/vagrant/.gemrc
