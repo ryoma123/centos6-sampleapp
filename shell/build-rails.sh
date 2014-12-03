@@ -55,14 +55,6 @@ EOS
 service mysqld start
 chkconfig mysqld on
 
-# mysql のDB を作成する
-if [ -d /var/lib/mysql/sampleapp2 ]; then
-    :
-    : database already created
-else
-    mysql -e "create database sampleapp2;"
-fi
-
 # vagrant user で実行する処理
 su - vagrant -c '/bin/bash /vagrant/shell/vagrant-user.sh'
 
