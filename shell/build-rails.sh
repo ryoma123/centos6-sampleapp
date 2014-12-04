@@ -100,8 +100,7 @@ if [ -d /home/vagrant/sample_app2/vendor/bundle ]; then
     :
     : gem already installed
 else
-    bundle update guard
-    bundle install --path vendor/bundle
+    bundle install --deployment
 fi
 
 # DB の生成
