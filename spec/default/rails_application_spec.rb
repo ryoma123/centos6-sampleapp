@@ -100,6 +100,7 @@ describe 'Build mysql' do
   end
 end
 
+# テスト環境のため iptables を off にしています
 describe 'Firewall is stopped' do
   describe service('iptables') do
     it { should_not be_enabled }
