@@ -29,14 +29,9 @@ describe 'Installed packages' do
 end
 
 describe 'Rails setup' do
-  describe 'Ruby/Rails is installed' do
+  describe 'Ruby is installed' do
     describe command('/home/vagrant/.rbenv/shims/ruby -v') do
       its(:stdout) { should match /2\.1\.\d/ }
-    end
-
-    describe command('source ~/.bash_profile;cd ~/sample_app2;bundle exec rails -v') do
-      let(:disable_sudo) {true}
-      its(:stdout) { should match /4\.0\.\d/ }
     end
   end
 
