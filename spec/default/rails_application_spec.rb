@@ -58,8 +58,8 @@ describe 'Rails setup' do
 
   describe 'Setting of rbenv' do
     describe file('/home/vagrant/.bash_profile') do
-      its(:content) { should match /export PATH="\$HOME\/\.rbenv\/bin:\$PATH"/ }
-      its(:content) { should match /eval "\$\(rbenv init -\)"/ }
+      its(:content) { should match %r(export PATH="\$HOME/\.rbenv/bin:\$PATH") }
+      its(:content) { should match %r(eval "\$\(rbenv init -\)") }
     end
 
     describe file('/home/vagrant/.rbenv/version') do
