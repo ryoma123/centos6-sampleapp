@@ -28,7 +28,7 @@ describe 'Installed packages' do
   end
 end
 
-describe 'Build rails' do
+describe 'Rails setup' do
   describe 'Ruby/Rails is installed' do
     describe command('/home/vagrant/.rbenv/shims/ruby -v') do
       its(:stdout) { should match /2\.1\.\d/ }
