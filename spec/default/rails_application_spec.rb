@@ -42,13 +42,6 @@ describe 'Rails setup' do
       it { should be_owned_by     'vagrant' }
       it { should be_grouped_into 'vagrant' }
     end
-
-    describe file('/home/vagrant/sample_app2/vendor/bundle/ruby/2.1.0/gems') do
-      it { should be_directory }
-      it { should be_mode         775 }
-      it { should be_owned_by     'vagrant' }
-      it { should be_grouped_into 'vagrant' }
-    end
   end
 
   describe 'Setting of rbenv' do
