@@ -82,7 +82,6 @@ describe 'Build mysql' do
 
   describe file('/var/lib/mysql/mysql.sock') do
     it { should be_socket }
-    it { should be_mode         777 }
     it { should be_owned_by     'mysql' }
     it { should be_grouped_into 'mysql' }
   end
