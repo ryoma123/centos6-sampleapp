@@ -12,11 +12,33 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "hfm4/centos6"
   config.vm.network "forwarded_port", guest: 3000, host: 3000
-  config.vm.provision :shell, path: "shell/build-rails.sh", privileged: false
+  # config.vm.provision :shell, path: "shell/build-rails.sh", privileged: false
+
+  config.vm.provision :shell do |update_puppet|
+    update_puppet.inline = <<-'SCRIPT'
+      require_version='3.7.3'
+      puppet_version=$(rpm -q --queryformat '%{VERSION}' puppet)
+      [ "$puppet_version" = "$require_version" ] || {
+          rpm --import http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs
+          rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-5.noarch.rpm
+          yum install -y "puppet-${require_version}"
+      }
+    SCRIPT
+  end
+
+  config.vm.provision :puppet do |puppet|
+    puppet.manifests_path = "vagrant"
+    puppet.manifest_file  = "init.pp"
+    puppet.options        = "--verbose"
+    options << "--noop"  if ENV['NOOP']
+    options << "--debug" if ENV['DEBUG']
+  end
+
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
   end
+
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--cpus",  4]
     vb.customize ["modifyvm", :id, "--hpet", "on"]   # おまじない設定。何これ? と思ったら下を読んでください
