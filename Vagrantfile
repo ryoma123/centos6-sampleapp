@@ -29,9 +29,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = "vagrant"
     puppet.manifest_file  = "init.pp"
-    puppet.options        = "--verbose"
+    options = ["--verbose", "--show_diff", "--detailed-exitcodes"]
     options << "--noop"  if ENV['NOOP']
     options << "--debug" if ENV['DEBUG']
+    puppet.options = options
   end
 
   config.vm.provider :virtualbox do |vb|
