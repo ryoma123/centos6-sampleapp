@@ -29,3 +29,14 @@ package {
   ]:
     ensure => installed
 }
+
+service {
+  'iptables':
+    enable => false,
+    ensure => stopped;
+
+  'mysqld':
+    enable  => true,
+    ensure  => running,
+    require => Package['mysql'];
+}
