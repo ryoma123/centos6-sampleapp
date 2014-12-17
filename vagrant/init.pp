@@ -40,3 +40,17 @@ service {
     ensure  => running,
     require => Package['mysql'];
 }
+
+file {
+  '/home/vagrant/.gemrc':
+    owner  => 'vagrant',
+    group  => 'vagrant',
+    mode   => 644,
+    source => '/vagrant/templates/.gemrc';
+
+  '/home/vagrant/.bash_profile':
+    owner  => 'vagrant',
+    group  => 'vagrant',
+    mode   => 644,
+    source => '/vagrant/templates/.bash_profile';
+}
