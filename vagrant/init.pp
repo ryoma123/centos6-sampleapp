@@ -106,3 +106,13 @@ exec { 'bundler':
     Package['sqlite-devel'],
   ],
 }
+
+exec { 'Make DB':
+  cwd     => '/home/vagrant',
+  command => "bash -c 'bundle exec rake db:create RAILS_ENV=production ; bundle exec rake db:migrate RAILS_ENV=production'",
+  creates => '/home/vagrant',
+  require => [
+    Package['git'],
+    Exec['App clone'],
+  ],
+}
