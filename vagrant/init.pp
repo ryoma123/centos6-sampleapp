@@ -85,3 +85,11 @@ exec {
       Exec['rbenv'],
     ];
 }
+
+exec { 'App clone':
+  user    => 'vagrant',
+  cwd     => '/home/vagrant',
+  command => 'git clone -b gemfile-for-centos6 https://github.com/ryoma123/sample_app2.git /home/vagrant/sample_app2',
+  creates => '/home/vagrant/sample_app2',
+  require => Package['git'],
+}
