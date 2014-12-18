@@ -58,14 +58,12 @@ file {
 exec {
   'rbenv':
     user        => 'vagrant',
-    environment => 'HOME=/home/vagrant',
     command     => 'git clone https://github.com/sstephenson/rbenv.git /home/vagrant/.rbenv',
     creates     => '/home/vagrant/.rbenv',
     require     => Package['git'];
 
   'ruby build':
     user        => 'vagrant',
-    environment => 'HOME=/home/vagrant',
     command     => 'git clone https://github.com/sstephenson/ruby-build.git /home/vagrant/.rbenv/plugins/ruby-build',
     creates     => '/home/vagrant/.rbenv/plugins/ruby-build',
     require     => [
