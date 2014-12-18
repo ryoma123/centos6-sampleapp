@@ -78,7 +78,7 @@ exec {
     user        => 'vagrant',
     environment => 'HOME=/home/vagrant',
     command     => "bash -c 'source /home/vagrant/.bash_profile ; makeopts=\"-j4\" configure_opts=\"--disable-install-doc\" rbenv install 2.1.5 ; rbenv global 2.1.5 ; rbenv rehash'",
-    timeout     => 1800,
+    timeout     => '1800',
     require     => [
       File['/home/vagrant/.bash_profile'],
       Exec['ruby build'],
@@ -99,7 +99,7 @@ exec { 'bundler':
   environment => 'HOME=/home/vagrant',
   cwd         => '/home/vagrant/sample_app2',
   command     => "bash -c 'source /home/vagrant/.bash_profile ; gem install bundler ; cd /home/vagrant/sample_app2 ; bundle install --deployment'",
-  timeout     => 1800,
+  timeout     => '1800',
   require     => [
     Exec['App clone'],
     Exec['Ruby install'],
