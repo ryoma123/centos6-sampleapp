@@ -93,3 +93,16 @@ exec { 'App clone':
   creates => '/home/vagrant/sample_app2',
   require => Package['git'],
 }
+
+exec { 'bundler':
+  user        => 'vagrant',
+  environment => 'HOME=/home/vagrant',
+  cwd         => '/home/vagrant/sample_app2',
+  command     => "bash -c 'source /home/vagrant/.bash_profile ; gem install bundler ; cd /home/vagrant/sample_app2 ; bundle install --deployment'",
+  timeout     => 1800,
+  require     => [
+    Exec['App clone'],
+    Exec['Ruby install'],
+    Package['sqlite-devel'],
+  ],
+}
