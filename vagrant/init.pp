@@ -1,9 +1,9 @@
 Package {
-  allow_virtual => true
+  allow_virtual => true,
 }
 
 Exec {
-  path => ['/bin', '/sbin', '/usr/bin', '/usr/sbin']
+  path => ['/bin', '/sbin', '/usr/bin', '/usr/sbin'],
 }
 
 package {
@@ -27,7 +27,7 @@ package {
     'mysql-devel',
     'mysql-server',
   ]:
-    ensure => installed
+    ensure => installed,
 }
 
 service {
