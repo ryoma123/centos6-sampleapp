@@ -117,7 +117,6 @@ exec { 'Make DB':
 
 exec { 'Assets Pipeline':
   cwd     => '/home/vagrant',
-  path    => ['/bin', '/sbin', '/usr/bin', '/usr/sbin'],
   command => "bash -c 'bundle exec rake assets:precompile RAILS_ENV=production'",
   creates => '/home/vagrant',
   require => Exec['App clone'],
