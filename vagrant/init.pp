@@ -3,7 +3,7 @@ Package {
 }
 
 Exec {
-  path => ['/bin', '/sbin', '/usr/bin', '/usr/sbin'],
+  path => ['/home/vagrant/.rbenv/shims', '/bin', '/sbin', '/usr/bin', '/usr/sbin'],
 }
 
 package {
@@ -105,12 +105,13 @@ exec { 'bundler':
 }
 
 exec { 'Make DB':
-  cwd     => '/home/vagrant',
-  command => "bash -c 'bundle exec rake db:create RAILS_ENV=production ; bundle exec rake db:migrate RAILS_ENV=production'",
-  creates => '/home/vagrant',
-  require => [
-    Package['git'],
+  user        => 'vagrant',
+  environment => 'HOME=/home/vagrant',
+  cwd         => '/home/vagrant/sample_app2',
+  command     => 'bundle exec rake db:create RAILS_ENV=production ; bundle exec rake db:migrate RAILS_ENV=production',
+  require     => [
     Exec['App clone'],
+    Exec['bundler'],
   ],
 }
 
